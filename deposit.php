@@ -55,7 +55,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                                 <strong>Deposit!</strong> error.</div>';
                     } 
                 ?>        
-
                 <form method="POST" action="" class="needs-validation" novalidate>
                     <div class="form-group">
                         <label for="date">Date:</label>
@@ -100,14 +99,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                                     <th>Date</th>
                                     <th>Value</th>
                                     <th>Reason</th>
-
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php 
-
                                     // Query for view List of Deposit record 
-
                                     $sql = "SELECT * from deposit ";
                                     $query = $dbh->prepare($sql);
                                     $query->execute();
@@ -118,14 +114,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                                         $date = $result->date;
                                         $value = $result->value;
                                         $reason = $result->reason;
-
                                 ?>
-
                                 <tr>
-                                    <td><?php echo $cnt ?></td>
-                                    <td><?php echo $date ?></td>
-                                    <td><?php echo $value ?></td>
-                                    <td><?php echo $reason ?></td>
+                                    <td><?php echo $cnt; ?></td>
+                                    <td><?php echo $date; ?></td>
+                                    <td><?php echo $value; ?></td>
+                                    <td><?php echo $reason; ?></td>
                                 </tr>
                                 </tbody>
                                 <?php $cnt+=1; }} ?>
@@ -136,7 +130,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             </div>
         </div>
     </div>
-
 </body>
 <script>
 // Disable form submissions if there are invalid fields
