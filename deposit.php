@@ -18,9 +18,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 		$query->execute();
 
         if($query == TRUE){
-            $msg = "success";
+            $msg = "<strong>Deposit!</strong> Save.";
         }else{
-            $msg = "error";
+            $error = "<strong>Deposit!</strong> error.";
         }
 
     }
@@ -47,12 +47,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 <h2> ADD DEPOSIT</h2>
                 <?php 
                     // Alert 
-                    if($msg == "success"){
-                        echo ' <div class="alert alert-success alert-dismissible" id="myAlert"><button type="button" class="close">&times;</button>
-                                <strong>Deposit!</strong> Save.</div>';
-                    }else{
-                        echo '  <div class="alert alert-danger alert-dismissible" id="myAlert"><button type="button" class="close">&times;</button>
-                                <strong>Deposit!</strong> error.</div>';
+                    if($msg){
+                        echo "<div class=\"alert alert-success alert-dismissible\" id=\"myAlert\"><button type=\"button\" class=\"close\">&times;</button> $msg </div>";
+                    }
+                    
+                    if($error){
+                        echo "<div class=\"alert alert-danger alert-dismissible\" id=\"myAlert\"><button type=\"button\" class=\"close\">&times;</button> $error </div>";
                     } 
                 ?>        
                 <form method="POST" action="" class="needs-validation" novalidate>
@@ -104,7 +104,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                                 <tbody>
                                 <?php 
                                     // Query for view List of Deposit record 
-                                    $sql = "SELECT * from deposit ";
+                                    $sql = "SELECT * from deposit";
                                     $query = $dbh->prepare($sql);
                                     $query->execute();
                                     $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -122,7 +122,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                                     <td><?php echo $reason; ?></td>
                                 </tr>
                                 </tbody>
-                                <?php $cnt+=1; }} ?>
+                                <?php $cnt+=1; }}else{
+                                    echo "No Record found";
+                                } ?>
                             </table>
                         </div>
                     </div>
